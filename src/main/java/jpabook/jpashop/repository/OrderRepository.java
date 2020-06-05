@@ -1,5 +1,6 @@
 package jpabook.jpashop.repository;
 
+
 import jpabook.jpashop.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -59,10 +60,13 @@ public class OrderRepository {
 
 
     public List<Order> findAllWithMemberDelivery() {
-       return em.createQuery(
+        return em.createQuery(
                 "select o from Order o" +
                         " join fetch o.member m" +
                         " join fetch o.delivery d", Order.class
         ).getResultList();
-    }
+    } //재사용성 O 하지만 최적화는 아니다.
+
+
+
 }
